@@ -115,7 +115,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Details Of the Json"),
+        title: const Text("Details Of the Candiate"),
       ),
     );
   }
