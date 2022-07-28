@@ -11,6 +11,7 @@ class SecondScreen extends StatefulWidget {
 
 class _SecondScreenState extends State<SecondScreen> {
   late Future<List<User>> futureAlbum;
+  ValueNotifier<bool> isDataload = ValueNotifier(false);
 
   @override
   void initState() {
@@ -23,13 +24,11 @@ class _SecondScreenState extends State<SecondScreen> {
         await http.get(Uri.parse("https://jsonplaceholder.typicode.com/todos"));
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(response.body);
-
       List<User> posts = body
           .map(
             (dynamic item) => User.fromJson(item),
           )
           .toList();
-
       return posts;
     } else {
       throw Exception('Failed to load album');
@@ -46,7 +45,18 @@ class _SecondScreenState extends State<SecondScreen> {
                 Navigator.pop(context);
               },
             ),
-            actions: const [Icon(Icons.done)],
+            // actions: [isDataload ? const Icon(Icons.done) : Container()],
+            actions: [
+              ValueListenableBuilder<bool>(
+                valueListenable: isDataload,
+                builder: (BuildContext context, bool value, Widget? child) {
+                  if (value == true) {
+                    return const Icon(Icons.done);
+                  }
+                  return Container();
+                },
+              ),
+            ],
             title: const Text("Result Page")),
         body: SingleChildScrollView(
           child: Column(children: [
@@ -56,6 +66,10 @@ class _SecondScreenState extends State<SecondScreen> {
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       // print(snapshot.data);
                       if (snapshot.hasData) {
+                        Future.delayed(const Duration(milliseconds: 100), () {
+                          isDataload.value = true;
+                        });
+
                         return ListView.builder(
                             shrinkWrap: true,
                             itemCount: snapshot.data.length,
