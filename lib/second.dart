@@ -96,7 +96,7 @@ class _SecondScreenState extends State<SecondScreen> {
                         return Text('${snapshot.error}');
                       } else {
                         return const Padding(
-                          padding: EdgeInsets.only(top: 100),
+                          padding: EdgeInsets.only(top: 200),
                           child: Center(child: CircularProgressIndicator()),
                         );
                       }
