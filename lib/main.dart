@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:futurebuild/second.dart';
+import 'package:futurebuild/streampage.dart';
 
 void main() => runApp(const MyApp());
 
@@ -40,16 +41,19 @@ class _MyBuildStateState extends State<MyBuildState> {
             ),
             TextButton(
               style: TextButton.styleFrom(
-                  primary: Colors.purpleAccent,
-                  backgroundColor: Colors.yellow // Text Color
-                  ),
+                  primary: Colors.purpleAccent, backgroundColor: Colors.yellow),
               onPressed: (() {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: ((context) => const SecondScreen())));
               }),
-              child: const Text('FutureBuilder'),
+              child: const Text(
+                'FutureBuilder',
+                style: TextStyle(
+                  fontSize: 20.5,
+                ),
+              ),
             ),
             const SizedBox(
               width: 100,
@@ -59,8 +63,18 @@ class _MyBuildStateState extends State<MyBuildState> {
                   primary: Colors.purpleAccent,
                   backgroundColor: Colors.yellow // Text Color
                   ),
-              onPressed: (() {}),
-              child: const Text('StreamBuilder'),
+              onPressed: (() {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const StreamPage())));
+              }),
+              child: const Text(
+                'StreamBuilder',
+                style: TextStyle(
+                  fontSize: 20.5,
+                ),
+              ),
             )
           ],
         ));
