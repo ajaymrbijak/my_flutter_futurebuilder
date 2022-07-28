@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -75,11 +76,26 @@ class _SecondScreenState extends State<SecondScreen> {
                             itemCount: snapshot.data.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Card(
+                                color: Colors.orange,
+                                elevation: 6,
+                                shadowColor: Colors.green,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(35.0),
+                                ),
                                 child: ListTile(
-                                  leading:
-                                      const Icon(Icons.flag_circle_rounded),
-                                  title: Text(snapshot.data[index].title),
-                                  trailing: const Icon(Icons.create_rounded),
+                                  leading: const Icon(Icons.flag_circle_rounded,
+                                      color: Color.fromARGB(214, 216, 56, 168)),
+                                  title: Text(
+                                    snapshot.data[index].title,
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color.fromARGB(255, 0, 0, 0)),
+                                  ),
+                                  trailing: const Icon(
+                                    Icons.create_rounded,
+                                    color: Color.fromARGB(255, 239, 239, 239),
+                                  ),
                                   // subtitle:
                                   //     Text(snapshot.data[index].id.toString()),
                                   onTap: () {
