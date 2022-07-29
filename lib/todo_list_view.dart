@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // ignore: camel_case_types
 class Todo_ListView extends StatelessWidget {
   final String? title;
-  final Function ontap;
+  final VoidCallback ontap;
   const Todo_ListView({Key? key, this.title, required this.ontap})
       : super(key: key);
   @override
