@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:futurebuild/second.dart';
-import 'package:futurebuild/streampage.dart';
+import 'package:futurebuild/todo_stream_builder.dart';
+import 'package:futurebuild/todo_future_builder.dart';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "NetworkData",
       theme: ThemeData(primarySwatch: Colors.green),
-      home: MyBuildState(title: "FutureBuild"),
+      home: MyBuild(title: "FutureBuild"),
     );
   }
 }
 
 // ignore: must_be_immutable
-class MyBuildState extends StatefulWidget {
-  MyBuildState({Key? key, required String title}) : super(key: key);
+class MyBuild extends StatefulWidget {
+  MyBuild({Key? key, required String title}) : super(key: key);
   String? title;
-
   @override
-  State<MyBuildState> createState() => _MyBuildStateState();
+  State<MyBuild> createState() => _MyBuildState();
 }
 
-class _MyBuildStateState extends State<MyBuildState> {
+class _MyBuildState extends State<MyBuild> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +44,7 @@ class _MyBuildStateState extends State<MyBuildState> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: ((context) => const SecondScreen())));
+                        builder: ((context) => const TodoListScreen())));
               }),
               child: const Text(
                 'FutureBuilder',
@@ -78,36 +76,5 @@ class _MyBuildStateState extends State<MyBuildState> {
             )
           ],
         ));
-  }
-}
-
-class DetailPage extends StatelessWidget {
-  final User user;
-  // ignore: prefer_const_constructors_in_immutables
-  DetailPage(this.user, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Details"),
-      ),
-    );
-  }
-}
-
-class User {
-  final int? userId;
-  final int? id;
-  final String? title;
-  final bool? completed;
-
-  User({this.userId, this.id, this.title, this.completed});
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-        userId: json['userId'],
-        id: json['id'],
-        title: json['title'],
-        completed: json['completed']);
   }
 }
