@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:futurebuild/todo_model.dart';
 import 'package:http/http.dart' as http;
 
+// ignore: camel_case_types
 class Todo_BusinessLogic {
-  ValueNotifier<bool> isDataload = ValueNotifier(false);
   StreamController<List<Todo>> streamController = StreamController.broadcast();
   void streamBuilderData() async {
     // ignore: avoid_print
@@ -20,7 +20,7 @@ class Todo_BusinessLogic {
               (dynamic item) => Todo.fromJson(item),
             )
             .toList();
-        const duration = Duration(seconds: 2);
+        const duration = Duration(seconds: 1);
         Timer.periodic(duration, (timer) {
           // Stop the timer when it matches a condition
           if (timer.tick >= 10) {
@@ -40,8 +40,13 @@ class Todo_BusinessLogic {
       throw Exception('error iss::::${e.toString}');
     }
   }
+}
 
+// ignore: camel_case_types
+class Todo_Futurebuider_BussinessLogic {
+  ValueNotifier<bool> isDataload = ValueNotifier(false);
   Future<List<Todo>> getData() async {
+    ValueNotifier<bool> isDataload = ValueNotifier(false);
     isDataload.value = false;
     var response =
         await http.get(Uri.parse("https://jsonplaceholder.typicode.com/todos"));

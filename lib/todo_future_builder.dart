@@ -12,7 +12,8 @@ class TodoListScreen extends StatefulWidget {
 
 class _TodoListScreenState extends State<TodoListScreen> {
   late Future<List<Todo>> futureAlbum;
-  Todo_BusinessLogic businessLogic = Todo_BusinessLogic();
+  Todo_Futurebuider_BussinessLogic businessLogic =
+      Todo_Futurebuider_BussinessLogic();
   @override
   void initState() {
     super.initState();
@@ -45,6 +46,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
               ),
             ],
             title: const Text("Result Page")),
+        //Future Builder implementation
         body: FutureBuilder<List<Todo>>(
             future: futureAlbum,
             builder: (BuildContext context, AsyncSnapshot snapshot) {
